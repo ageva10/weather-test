@@ -29,7 +29,7 @@ module.exports = app => {
 
       // Filters
       const data = weatherData.filter(c =>
-        c.show === true &&
+        c.show &&
         c.city_name.toLowerCase().includes(req.body.city.toLowerCase()) &&
         moment(c.date).isSame(req.body.date, 'day')
       )
