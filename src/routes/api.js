@@ -4,7 +4,7 @@ import path from 'path'
 import moment from 'moment'
 import { getIndexes, getNewId, getWeatherData } from '../helper'
 
-let weatherData = null
+let weatherData = []
 const weatherFile = path.join(__dirname, '../data/weather.json')
 
 if (fs.existsSync(weatherFile)) {
@@ -18,7 +18,7 @@ module.exports = app => {
     try {
 
       // Checking for weather data.
-      if (!weatherData) return res.status(500).end()
+      if (weatherData.length === 0) return res.status(500).end()
 
       // Checking if city and date format is correct.
       if (!req.body.city) {
@@ -68,9 +68,9 @@ module.exports = app => {
         ...getWeatherData()
       }
 
-      fs.writeFileSync(weatherFile, JSON.stringify(weatherData))
-
       weatherData.push(data)
+
+      fs.writeFileSync(weatherFile, JSON.stringify(weatherData))
 
       return res.status(200).json({
         message: 'The city has been added.'
