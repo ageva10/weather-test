@@ -2,7 +2,7 @@
 import fs from 'fs'
 import path from 'path'
 import moment from 'moment'
-import { getIndexes, getNewId, getWeatherData, isValidCityAndDate } from '../helper'
+import { getIndexes, getNewId, getWeatherData } from '../helper'
 
 let weatherData = null
 const weatherFile = path.join(__dirname, '../data/weather.json')
@@ -52,6 +52,13 @@ module.exports = app => {
       } else if (!req.body.date.match(/^((\d{4})-\d{1,2})\-(\d{1,2})$/)) { // YYYY-MM-DD
         return res.status(400).json({ message: 'Please make sure the date format is correct, like YYYY-MM-DD.' })
       }
+
+      const isExists = weatherData.find(c =>
+        c.city_name.toLowerCase() === req.body.city.toLowerCase() &&
+        moment(c.date).isSame(req.body.date, 'day')
+      )
+
+      if (isExists) return res.status(400).json({ message: 'The city is already exists.' })
 
       const data = {
         id: getNewId(weatherData, 0),

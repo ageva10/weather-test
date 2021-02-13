@@ -34,17 +34,8 @@ const getWeatherData = () => {
   }
 }
 
-const isValidCityAndDate = (req, res) => {
-  if (!req.body.city) {
-    return res.status(400).json({ message: 'Please enter the city name.' })
-  } else if (!req.body.date.match(/^((\d{4})-\d{1,2})\-(\d{1,2})$/)) { // YYYY-MM-DD
-    return res.status(400).json({ message: 'Please make sure the date format is correct, like YYYY-MM-DD.' })
-  }
-}
-
 export {
   getIndexes,
   getNewId,
-  getWeatherData,
-  isValidCityAndDate
+  getWeatherData
 }
