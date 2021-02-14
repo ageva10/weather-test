@@ -2,44 +2,7 @@
 import fs from 'fs'
 import path from 'path'
 import moment from 'moment'
-import { isEmpty, getIndexes, reverseDate, getWeatherData } from '../helper'
-
-//////////////////////////////////////////
-// 7 Days ago ////////////////////////////
-//////////////////////////////////////////
-// const date = moment().utcOffset(0)
-// date.set({ hour: 0, minute: 0, second: 0, millisecond: 0 })
-//
-// const weather = path.join(__dirname, '../data/weather.json')
-//
-// const file = path.join(__dirname, '../data/city.list.json')
-// const content = JSON.parse(fs.readFileSync(file, 'utf8'))
-// const array = []
-//
-// let index = 100000
-//
-// for (let i = 0; i < Math.ceil(content.length / 7); i++) {
-//   const isShow = Boolean(Math.floor(Math.random() * 2))
-//   for (let y = 0; y <= 6; y++) {
-//
-//     const data = {
-//       id: index,
-//       city_name: content[i].name,
-//       date: moment(date).add(-y, 'd'),
-//       show: isShow,
-//       ...getWeatherData()
-//     }
-//
-//     array.push(data)
-//     index++
-//
-//   }
-// }
-//
-// fs.writeFileSync(weather, JSON.stringify(array))
-//
-// console.log(array)
-//////////////////////////////////////////
+import { isEmpty, getIndexes, reverseDate } from '../helper'
 
 let weatherData = []
 const weatherFile = path.join(__dirname, '../data/weather.json')
