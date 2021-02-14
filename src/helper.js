@@ -1,19 +1,26 @@
 
+const isUndefinedOrNull = (a) => {
+  return a === undefined || a === null
+}
+
+const isEmpty = (a) => {
+  return isUndefinedOrNull(a) || JSON.stringify(a) === '{}' || a.length === 0
+}
+
 const getIndexes = (a, b, c) => {
   let indexes = []
   a.findIndex((e, i) => {
-    if (e[b] && e[b].toString() === c.toString()) {
+    if (e[b] && e[b].toString().toLowerCase() === c.toString().toLowerCase()) {
       indexes.push(i)
     }
   })
   return indexes
 }
 
-const getNewId = (a, b) => {
-  return a[a.length + b] ? getNewId(a, ++b) : a.length + b
+const reverseDate = (a) => {
+  return a.split('-').reverse().join('-')
 }
 
-// This is random weather data!
 const getWeatherData = () => {
   return {
     weather: {
@@ -35,7 +42,9 @@ const getWeatherData = () => {
 }
 
 export {
+  isUndefinedOrNull,
+  isEmpty,
   getIndexes,
-  getNewId,
+  reverseDate,
   getWeatherData
 }

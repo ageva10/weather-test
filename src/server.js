@@ -45,7 +45,7 @@ export default class Server {
 
   closeServer() {
     try {
-      this.server.close()
+      if (this.server) this.server.close()
     } catch (e) {
       console.log('ERROR:', e.message)
       process.exit()
