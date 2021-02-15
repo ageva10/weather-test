@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "nodemon --exec babel-node src/index.js",
     "build": "rimraf dist && babel src -d dist --copy-files",
-    "mix": "kill-port 1234 && yarn build && yarn start",
     "start": "node ./dist/index.js"
   },
   "repository": {
